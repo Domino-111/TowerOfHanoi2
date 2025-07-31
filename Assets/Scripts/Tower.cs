@@ -1,21 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
-    public Transform towerAnchor;
+    public RectTransform towerAnchor;
+    public Image towerBase, towerPole;
 
-    public Transform GetTopTile()
+    /// <summary>
+    /// Return the first child if any
+    /// Null if not
+    /// </summary>
+    /// <returns></returns>
+    public RectTransform GetTopTile()
     {
-        return towerAnchor.childCount > 0 ? towerAnchor.GetChild(0) : null;
-        
-        /*if (towerAnchor.childCount > 0)
-        {
-            return towerAnchor.GetChild(0);
-        }
+        return towerAnchor.childCount > 0 ? towerAnchor.GetChild(0).GetComponent<RectTransform>() : null;
+    }
 
-        else
-        {
-            return null;
-        }*/
+    /// <summary>
+    /// Take a colour and apply to the tower's base and pole
+    /// </summary>
+    /// <param name="newColor"></param>
+    public void AssignColor(Color newColor)
+    {
+        towerBase.color = newColor;
+        towerPole.color = newColor;
     }
 }
